@@ -1,6 +1,6 @@
 % ----------------------------
 % Name       : rgb2bw
-% Param      : path, level
+% Param      : path, level (luminance level)
 % Return     : Black and white image
 % Description: This function will takes 2 arguments,
 % first, path where image stored, and second one is 
@@ -10,6 +10,9 @@
 function [IBW] = rgb2bw(path, level)
     I = imread(path);
     IGray = rgb2gray(I);
+    if isempty(level)
+        level = 0.5;
+    end
     IBW = im2bw(IGray, level);
 end
 
