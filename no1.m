@@ -1,8 +1,12 @@
 % ======================================================================= %
 % File: no1.m
 % Cara menjalankan:
-%  Jalankan no1 di command window
-% 
+%  Ketik no1 di command window dan hit enter
+% Output:
+%  image asli, image hitam putih, histogram untuk image hitam putih,
+%  image crop, histogram image crop, grayscale image, histogram image
+%  histogram equalization. Selain itu, image crop juga disimpan di
+%  direktori result_images.
 % ======================================================================= %
 
 
@@ -89,6 +93,14 @@ IHist = histeq(IGray);
 % subplot(1,2,1), imshow(IGray), title('Sebelum histogram equalization');
 % subplot(1,2,2), imshow(IHist), title('Sesudah histogram equalization');
 
-imshow(IHist);
+figure;
+subplot(3, 3, 1), imshow(I), title('Image asli');
+subplot(3, 3, 2), imshow(IBW), title('Image hitam putih');
+subplot(3, 3, 3), imhist(uint8(IBW)), title('Histogram Equalization');
+subplot(3, 3, 4), imshow(ICrop), title('Image crop');
+subplot(3, 3, 5), imhist(uint8(ICrop)), title('Histogram Equalization');
+subplot(3, 3, 6), imshow(IGray), title('Grayscale image');
+subplot(3, 3, 7), imhist(IHist), title('Histogram equalization');
+
 
 
