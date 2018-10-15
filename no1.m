@@ -1,4 +1,6 @@
 % ======================================================================= %
+% NIM: 1806255336
+% Nama: Didi Yudha Perwira
 % File: no1.m
 % Cara menjalankan:
 %  Ketik no1 di command window dan hit enter
