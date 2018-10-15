@@ -7,8 +7,7 @@
 % level of intensity as a threshold of luminance. 
 % The result is a black and white image.
 % ----------------------------
-function [IBW] = rgb2bw(path, level)
-    I = imread(path);
+function [IBW] = rgb2bw(I, level)
     IGray = rgb2gray(I);
     if isempty(level)
         level = 0.5;

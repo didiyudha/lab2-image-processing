@@ -18,10 +18,13 @@ addpath('./functions/');
 % 1.a
 % Memanggil funsi rgb2bw yang di definisikan di dalam folder functions.
 % Fungsi ini membutuhkan 2 parameter:
-%   1. Path tujuan tempat image di simpan
+%   1. Image yang akan dirubah.
 %   2. Level dari intensitas sebagai threshold dari luminance.
 % Output dari function rgb2bw ini adalah image binary.
-IBW = rgb2bw('images/coin_1000.jpg', 0.5);
+I = imread('images/coin_1000.jpg');
+IBW = rgb2bw(I, 0.5);
+% subplot(1,2,1), imshow(I), title('Image asli');
+% subplot(1,2,2), imshow(IBW), title('Image hitam putih');
 
 % Simpan citra hitam putih ke dalam folder result_images dengan 
 % nama BW_1a.jpg
@@ -40,9 +43,10 @@ imwrite(IBW, strcat(result_path, '/BW_1a.jpg'));
 fprintf('Pixels: %d, %d\n', binLocations(1), binLocations(2));
 fprintf('Jumlah Pixel %d: %d\n', binLocations(1), counts(1));
 fprintf('Jumlah Pixel %d: %d\n\n', binLocations(2), counts(2));
+% imhist(uint8(IBW));
 
 % 1.c
-% crop c?itra hitam putih dengan mengambil ?range i?ndeks piksel horizontal 
+% crop citra hitam putih dengan mengambil ?range i?ndeks piksel horizontal 
 % 200 sampai 400,dan vertikal 100 sampai 400. Disini kita akan menggunakan
 % fungsi imcrop yang sudah tersedia pada Matlab. Disini kita bisa
 % menggunakan 2 parameter yang ada di fungsi imcrop, yaitu Image dan rect. 
@@ -57,8 +61,11 @@ fprintf('Jumlah Pixel %d: %d\n\n', binLocations(2), counts(2));
 ICrop = imcrop(IBW, [200 100 200 300]);
 [counts,binLocations] = imhist(uint8(ICrop));
 fprintf('Pixels image crop: %d, %d\n', binLocations(1), binLocations(2));
-fprintf('Jumlah Pixel %d image crop:: %d\n', binLocations(1), counts(1));
-fprintf('Jumlah Pixel %d image crop:: %d\n\n', binLocations(2), counts(2));
+fprintf('Jumlah Pixel %d image crop: %d\n', binLocations(1), counts(1));
+fprintf('Jumlah Pixel %d image crop: %d\n\n', binLocations(2), counts(2));
+
+% subplot(1,2,1), imshow(ICrop), title('Image binary');
+% subplot(1,2,2), imhist(uint8(ICrop)), title('Histogram');
 
 % 1.d
 % Jadikan citra berwarna menjadi citra ?grayscale ?(memiliki intensitas 
@@ -70,7 +77,8 @@ fprintf('Jumlah Pixel %d image crop:: %d\n\n', binLocations(2), counts(2));
 % citra grayscale.
 I = imread('./images/coin_1000.jpg');
 IGray = rgb2gray(I);
-subplot(1,1,1), imhist(IGray), title('Histogram Equalization');
+% subplot(1,2,1), imshow(IGray), title('Grayscale image');
+% subplot(1,2,2), imhist(IGray), title('Histogram');
 
 
 
@@ -78,8 +86,9 @@ subplot(1,1,1), imhist(IGray), title('Histogram Equalization');
 % Lakukan? histogram equalization p?adagambar 1.d! Bandingkan citra sebelum 
 % dan sesudah ?histogram equalization.
 IHist = histeq(IGray);
-subplot(1,2,1), imshow(IGray), title('Sebelum histogram equalization');
-subplot(1,2,2), imshow(IHist), title('Sesudah histogram equalization');
+% subplot(1,2,1), imshow(IGray), title('Sebelum histogram equalization');
+% subplot(1,2,2), imshow(IHist), title('Sesudah histogram equalization');
 
+imshow(IHist);
 
 

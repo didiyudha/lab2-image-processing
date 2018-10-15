@@ -6,13 +6,12 @@ IDepok2016 = imread('./images/Depok2016.jpg');
 IDepok2005 = imread('./images/Depok2005.jpg');
 
 I = IDepok2016 - IDepok2005;
-ILog = gamma_transformation(I, 5);
+ILog = gamma_transformation(I, 5, 2);
 IGray = rgb2gray(ILog);
 
 IBW = imbinarize(IGray);
 IBWOpen = bwareaopen(IBW, 1250);
-imshow(IBWOpen)
-
+ 
 IBWOpenSize = size(IBWOpen);
 
 row = IBWOpenSize(1);
@@ -31,6 +30,7 @@ for k=1:size(boundaries,1)
    plot(b(:,2),b(:,1),'r','LineWidth',2);
 end
 
+fprintf('Luas Area: %d\n', sum(IBWOpen(:)));
 
 
 
